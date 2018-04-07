@@ -89,5 +89,25 @@ router.post('/getActivity', function(req, res) {
   });
 });
 
+router.post('/checkPassword', function(req, res) {
+  console.log(req.body);
+  s = req.body;
+  Orienteering.findOne({activity_id:s.activity_id}, function(err, ori) {
+    if (err) {
+      res.send("Fail");
+    } else {
+      console.log(ori);
+      if (ori == null) {
+        res.send("Fail");
+      } else {
+        if (ori.toObject().password == s.password) {
+          res.send("Success");
+        } else {
+          res.send("Fail")
+        }
+      }
+    }
+  });
+});
 
 module.exports = router;
