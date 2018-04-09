@@ -79,11 +79,11 @@ router.post('/getActivity', function(req, res) {
     if (err) {
       res.send("Fail");
     } else {
+      console.log(ori);
       if (ori == null) {
-        console.log(ori);
         res.send("Fail");
       } else {
-        res.send(ori);
+        res.send(ori.toObject().data);
       }
     }
   });
